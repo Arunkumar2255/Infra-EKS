@@ -108,15 +108,15 @@ resource "aws_iam_role" "Infra1" {
 
 resource "aws_iam_role_policy_attachment" "luit22-AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-  role       = aws_iam_role.luit222.name
+  role       = aws_iam_role.Infra1.name
 }
 
 resource "aws_iam_role_policy_attachment" "luit22-AmazonEKS_CNI_Policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-  role       = aws_iam_role.luit222.name
+  role       = aws_iam_role.Infra1.name
 }
 
 resource "aws_iam_role_policy_attachment" "luit22-AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-  role       = aws_iam_role.luit222.name
+  role       = aws_iam_role.Infra1.name
 }
