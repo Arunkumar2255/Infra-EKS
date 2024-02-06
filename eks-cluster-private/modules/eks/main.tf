@@ -91,8 +91,8 @@ resource "aws_iam_role_policy_attachment" "luit22-AmazonEKSVPCResourceController
   role       = aws_iam_role.Infra.name
 }
 
-resource "aws_iam_role" "luit222" {
-  name = "eks-node-group-luit22"
+resource "aws_iam_role" "Infra1" {
+  name = "eks-node-group-2024"
 
   assume_role_policy = jsonencode({
     Statement = [{
