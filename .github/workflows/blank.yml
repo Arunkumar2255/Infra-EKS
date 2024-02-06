@@ -25,24 +25,17 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-
-      - name: Changing folder
-        run: pwd 
-        
-      - name: listing folder
-        run: ls -a   
-
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform Validate
-        run: terraform validate
-
-      - name: Terraform Plan
-        run: terraform plan 
-
-      - name: Terraform Apply
-        run: terraform destroy --auto-approve
+      - name: Change Directory and Execute Commands
+        working-directory: path/to/your/folder  # Replace with the path to your folder
+        run: |
+          cd eks-cluster-private
+          # Run your commands here
+          ls -a
+          # Example commands:
+          terraform init
+          terraform plan
+          terraform apply --auto-approve
+          
         
 
 
