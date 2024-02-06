@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-        bucket = "lal-bucket-123"
-        key     = "myproject022/terraform.tfstate"
-        region = "us-west-2"
+        bucket = "ar-bucket-111"
+        key     = "mypro077/terraform.tfstate"
+        region = "ap-southeast-1"
   }
 }
