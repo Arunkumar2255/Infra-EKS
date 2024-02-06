@@ -27,7 +27,10 @@ jobs:
 
 
       - name: Changing folder
-        run: cd eks-cluster-private
+        run: pwd 
+        
+      - name: listing folder
+        run: ls -a   
 
       - name: Terraform Init
         run: terraform init
