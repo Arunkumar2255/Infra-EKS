@@ -60,8 +60,8 @@ resource "aws_security_group" "node_group_one" {
   }
 }
 
-resource "aws_iam_role" "luit22" {
-  name = "eks-cluster-luit22"
+resource "aws_iam_role" "Infra" {
+  name = "eks-cluster-2024"
 
   assume_role_policy = <<POLICY
 {
