@@ -19,7 +19,7 @@ resource "aws_eks_cluster" "luit22" {
 resource "aws_eks_node_group" "luit22" {
   cluster_name    = aws_eks_cluster.luit22.name
   node_group_name = var.node_group_name
-  node_role_arn   = aws_iam_role.luit222.arn
+  node_role_arn   = aws_iam_role.Infra1.arn
   subnet_ids      = var.aws_public_subnet
   instance_types  = var.instance_types
 
