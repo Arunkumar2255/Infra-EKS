@@ -1,6 +1,6 @@
 resource "aws_eks_cluster" "luit22" {
   name     = var.cluster_name
-  role_arn = aws_iam_role.luit22.arn
+  role_arn = aws_iam_role.Infra.arn
 
   vpc_config {
     subnet_ids              = var.aws_public_subnet
