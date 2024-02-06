@@ -18,7 +18,7 @@ data "aws_ami" "ubuntu" {
   }
 }
 data "template_file" "userdata" {
-  template = file("./user_data/userdata.tpl")
+  template = file("${path.module}/../user_data/userdata.tpl")
 }
 
 
