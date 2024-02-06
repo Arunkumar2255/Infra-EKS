@@ -81,14 +81,14 @@ POLICY
 
 resource "aws_iam_role_policy_attachment" "luit22-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role       = aws_iam_role.luit22.name
+  role       = aws_iam_role.Infra.name
 }
 
 # Optionally, enable Security Groups for Pods
 # Reference: https://docs.aws.amazon.com/eks/latest/userguide/security-groups-for-pods.html
 resource "aws_iam_role_policy_attachment" "luit22-AmazonEKSVPCResourceController" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
-  role       = aws_iam_role.luit22.name
+  role       = aws_iam_role.Infra.name
 }
 
 resource "aws_iam_role" "luit222" {
