@@ -28,7 +28,7 @@ jobs:
       - name: Change Directory and Execute Commands
         # working-directory: path/to/your/folder  # Replace with the path to your folder
         run: |
-          cd eks-cluster-private
+          cd modules
           # Run your commands here
           ls -a
           # Example commands:
