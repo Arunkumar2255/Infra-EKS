@@ -32,17 +32,17 @@ module "eks" {
   endpoint_public_access  = false
   endpoint_private_access = true
   public_access_cidrs     = ["0.0.0.0/0"]
-  node_group_name         = "luit22"
+  node_group_name         = "Node1"
   scaling_desired_size    = 1
   scaling_max_size        = 1
   scaling_min_size        = 1
   instance_types          = ["t2.small"]
-  key_pair                = "eks"
+  key_pair                = "EKS-CICD"
 }
 
 module "vpc" {
   source                  = "./modules/vpc"
-  tags                    = "luit22"
+  tags                    = "Node1"
   instance_tenancy        = "default"
   vpc_cidr                = "10.0.0.0/16"
   access_ip               = "0.0.0.0/0"
