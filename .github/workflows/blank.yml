@@ -25,6 +25,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
+
+      - name: Changing folder
+        run: cd eks-cluster-private
+
       - name: Terraform Init
         run: terraform init
 
