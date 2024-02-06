@@ -58,5 +58,5 @@ module "bastionhost" {
   vpc_id = module.vpc.vpc_id
   key_name = "eks"
   subnet_id = module.vpc.aws_public_subnet
-  ami_id = "ami-0ce2cb35386fc22e9"
+  ami_id = "ami-0c7217cdde317cfec"
   }
