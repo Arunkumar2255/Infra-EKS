@@ -18,7 +18,7 @@ data "aws_ami" "ubuntu" {
   }
 }
 data "template_file" "userdata" {
-  template = file("/eks-cluster-private/userdata/userdata.tpl")
+  template = file("/eks-cluster-private/user_data/userdata.tpl")
 
 }
 
