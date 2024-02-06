@@ -4,5 +4,5 @@ output "aws_public_subnet" {
 }
 
 output "vpc_id" {
-  value = aws_vpc.luit22.id
+  value = aws_vpc.Infra.id
 }
