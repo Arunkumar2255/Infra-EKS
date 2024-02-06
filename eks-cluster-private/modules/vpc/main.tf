@@ -1,5 +1,5 @@
 #######modules/vpc/main.tf
-resource "aws_vpc" "luit22" {
+resource "aws_vpc" "Infra" {
   cidr_block       = var.vpc_cidr 
   instance_tenancy = var.instance_tenancy
   tags = {
