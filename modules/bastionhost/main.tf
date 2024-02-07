@@ -26,7 +26,7 @@ data "template_file" "userdata" {
 
 resource "aws_instance" "bastion_host" {
   ami           = var.ami_id
-  instance_type = var.instance_type_BH
+  instance_type = var.instance_type
   key_name      = var.key_name
   subnet_id     = var.subnet_id[0]
   user_data = data.template_file.userdata.rendered
