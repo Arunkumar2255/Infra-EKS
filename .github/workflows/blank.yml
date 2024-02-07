@@ -43,7 +43,7 @@ jobs:
 # Uncomment the following line to see the resources that are not supported by Infracost yet
 # show_skipped: true
 
-      - name: Terraform Apply
-        run: terraform apply --auto-approve
+      - name: Terraform destroy
+        run: terraform destroy --auto-approve
       
         
