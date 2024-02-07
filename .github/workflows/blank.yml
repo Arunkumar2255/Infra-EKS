@@ -34,10 +34,10 @@ jobs:
       - name: Terraform Plan
         run: terraform plan 
         
-      - name: Run Infracost
-        uses: actions/checkout@v2
-        with:
-          api_key: ${{ secrets.INFRACOST_API_KEY }}
+      #- name: Run Infracost
+       # uses: actions/checkout@v2
+        #with:
+         # api_key: ${{ secrets.INFRACOST_API_KEY }}
 # Uncomment the following line to use a usage file
 # usage_file: infracost-usage.yml
 # Uncomment the following line to see the resources that are not supported by Infracost yet
