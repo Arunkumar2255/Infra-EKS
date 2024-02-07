@@ -19,8 +19,8 @@ module "vpc" {
   tags                    = var.tags
   instance_tenancy        = var.instance_tenancy
   vpc_cidr                =  var.vpc_cidr
-  access_ip               = "0.0.0.0/0"
-  #access_ip               = var.access_ip
+  #access_ip               = "0.0.0.0/0"
+  access_ip               = var.access_ip
   public_sn_count         = var.public_sn_count
   public_cidrs            = var.public_cidrs
   map_public_ip_on_launch = var.map_public_ip_on_launch
