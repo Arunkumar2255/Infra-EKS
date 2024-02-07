@@ -35,7 +35,7 @@ jobs:
         run: terraform plan 
         
       - name: Run Infracost
-        uses: infracost/actions@v0.4.0
+        uses: ./setup
         with:
           api_key: ${{ secrets.INFRACOST_API_KEY }}
 # Uncomment the following line to use a usage file
