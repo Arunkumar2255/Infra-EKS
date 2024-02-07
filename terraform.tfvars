@@ -1,5 +1,5 @@
 cluster_name = "EKS-cluster"
-key_pair = "eks"
+key_pair = "eks-oregon"
 instance_types = ["t3.large"]
 node_group_name = "vis-cluster-node-group"
 public_access_cidrs = ["0.0.0.0/0"]
@@ -14,5 +14,5 @@ scaling_desired_size = "2"
 scaling_max_size = "2"
 scaling_min_size = "2"
 map_public_ip_on_launch = "true"
-key_name = "myeks"
-ami_id = "ami-0fa377108253bf620"
+key_name = "eks-oregon"
+ami_id = "ami-008fe2fc65df48dac"
