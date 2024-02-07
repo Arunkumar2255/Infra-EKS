@@ -1,6 +1,7 @@
 cluster_name = "EKS-cluster"
 key_pair = "eks-oregon"
 instance_types = ["t2.small"]
+instance_type_BH = "t3.micro"
 node_group_name = "vis-cluster-node-group"
 public_access_cidrs = ["0.0.0.0/0"]
 tags = "cluster-vpc"
