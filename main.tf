@@ -34,4 +34,5 @@ module "bastionhost" {
   key_name = var.key_name
   subnet_id = module.vpc.aws_public_subnet
   ami_id = var.ami_id
-  }
+  instance_type_BH = var.instance_type_BH
+}
