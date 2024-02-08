@@ -1,5 +1,5 @@
 cluster_name = "EKS-cluster"
-key_pair = "eks-n"
+key_pair = "eks-c"
 instance_types = ["t3.small"]
 #instance_type_BH = ["t3.micro"]
 node_group_name = "vis-cluster-node-group"
@@ -15,5 +15,5 @@ scaling_desired_size = "2"
 scaling_max_size = "2"
 scaling_min_size = "2"
 map_public_ip_on_launch = "true"
-key_name = "eks-n"
-ami_id = "ami-0c7217cdde317cfec"
+key_name = "eks-c"
+ami_id = "ami-0ce2cb35386fc22e9"
