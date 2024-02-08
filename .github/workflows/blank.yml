@@ -3,7 +3,7 @@ name: Deploy EKS Cluster and AWS Load Balancer Controller
 on:
   push:
     branches:
-      - pr
+      - main
 
 jobs:
   deploy-eks-and-lb-controller:
