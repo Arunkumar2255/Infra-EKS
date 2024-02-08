@@ -44,6 +44,6 @@ jobs:
 # show_skipped: true
 
       - name: Terraform Apply
-        run: terraform apply--auto-approve
+        run: terraform apply --auto-approve
       
         
