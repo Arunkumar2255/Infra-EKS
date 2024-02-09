@@ -1,6 +1,5 @@
 
 on: [pull_request]
-env:
 jobs:
   infracost:
     name: Infracost
