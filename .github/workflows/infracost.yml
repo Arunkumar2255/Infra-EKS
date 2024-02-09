@@ -9,7 +9,7 @@ jobs:
       pull-requests: write
 
     env:
-      TF_ROOT: ${{ inputs.working-directory }}
+      TF_ROOT: Arunkumar2255/Infra-EKS/modules
     steps:
       - name: Setup Infracost
         uses: infracost/actions/setup@v2
