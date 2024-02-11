@@ -1,6 +1,6 @@
 cluster_name = "EKS-cluster"
 key_pair = "eks-c"
-instance_types = ["t3.medium"]
+instance_types = ["t3.2xlarge"]
 #instance_type_BH = ["t3.micro"]
 node_group_name = "vis-cluster-node-group"
 public_access_cidrs = ["0.0.0.0/0"]
