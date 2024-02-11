@@ -1,4 +1,3 @@
-
 on: [pull_request]
 jobs:
   infracost:
@@ -11,42 +10,50 @@ jobs:
     env:
       TF_ROOT: Infra-EKS
     steps:
+      - name: Checkout base branch
+        uses: actions/checkout@v3
+        with:
+          ref: '${{ github.event.pull_request.base.ref }}'
+          path: 'base'
+
       - name: Setup Infracost
         uses: infracost/actions/setup@v2
         with:
           api-key: ${{ secrets.INFRACOST_API_KEY }}
 
-      - name: Checkout base branch
-        uses: actions/checkout@v3
-        with:
-          ref: '${{ github.event.pull_request.base.ref }}'
-
-      # Generate Infracost JSON file as the baseline.
-      - name: Generate Infracost cost estimate baseline
+      - name: Generate Infracost cost estimate baseline for base branch
         run: |
-          infracost breakdown --path=${TF_ROOT} \
+          cd base/${TF_ROOT}
+          infracost breakdown --path=. \
                               --format=json \
                               --out-file=/tmp/infracost-base.json
-          echo '#########################'
-          cat /tmp/infracost-base.json
-      # Checkout the current PR branch so we can create a diff.
-      - name: Checkout pr branch
-        uses: actions/checkout@v3
 
-      # Generate an Infracost diff and save it to a JSON file.
-      - name: Generate Infracost diff
+      - name: Checkout PR branch
+        uses: actions/checkout@v3
+        with:
+          path: 'pr'
+
+      - name: Generate Infracost diff for PR branch
         run: |
-          infracost diff --path=${TF_ROOT} \
+          cd pr/${TF_ROOT}
+          infracost diff --path=. \
                           --format=json \
                           --compare-to=/tmp/infracost-base.json \
-                          --out-file=/tmp/infracost.json
-          echo '#########################'
-          cat /tmp/infracost.json
-                          
-      - name: Post Infracost comment
+                          --out-file=/tmp/infracost-diff.json
+
+      # This is the new step that replaces the previous "Post Infracost comment" step
+      - name: Post detailed Infracost comment
         run: |
-            infracost comment github --path=/tmp/infracost.json \
-                                     --repo=$GITHUB_REPOSITORY \
-                                     --github-token=${{github.token}} \
-                                     --pull-request=${{github.event.pull_request.number}} \
-                                     --behavior=update
+          # Parse the Infracost JSON output for detailed cost information
+          jq '.projects[] | {projectName: .name, pastCost: .pastTotalMonthlyCost, newCost: .totalMonthlyCost, diff: .diffTotalMonthlyCost}' /tmp/infracost-diff.json > /tmp/parsed_costs.json
+
+          # Format the parsed JSON into a markdown comment
+          echo "### Cost Analysis" > comment.md
+          echo "| Project | Previous Cost | New Cost | Cost Difference |" >> comment.md
+          echo "|---------|--------------|----------|-----------------|" >> comment.md
+          jq -r '.[] | "\(.projectName) | \$\(.pastCost) | \$\(.newCost) | \(.diff)"' /tmp/parsed_costs.json >> comment.md
+
+          # Post the comment to GitHub
+          gh pr comment ${{ github.event.pull_request.number }} --body-file comment.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
