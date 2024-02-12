@@ -35,7 +35,7 @@ jobs:
 
       - name: Generate Infracost diff for PR branch
         run: |
-          cd pr/${TF_ROOT}
+          #cd pr/${TF_ROOT}
           infracost diff --path=. \
                           --format=json \
                           --compare-to=/tmp/infracost-base.json \
