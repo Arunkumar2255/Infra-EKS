@@ -51,6 +51,10 @@ jobs:
           echo "### Cost Analysis" > comment.md
           echo "| Project | Previous Cost | New Cost | Cost Difference |" >> comment.md
           echo "|---------|--------------|----------|-----------------|" >> comment.md
+
+          - name: Print parsed_costs.json content
+            run: cat /tmp/parsed_costs.json
+
          
           jq -r '.[] | "\(.projectName) | $\(.pastCost) | $\(.newCost) | \(.diff)"' /tmp/parsed_costs.json >> comment.md
 
