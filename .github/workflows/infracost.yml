@@ -23,7 +23,7 @@ jobs:
 
       - name: Generate Infracost cost estimate baseline for base branch
         run: |
-          cd base/${TF_ROOT}
+        
           infracost breakdown --path=. \
                               --format=json \
                               --out-file=/tmp/infracost-base.json
