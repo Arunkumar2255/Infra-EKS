@@ -13,7 +13,7 @@ jobs:
       - name: Checkout base branch
         uses: actions/checkout@v3
         with:
-          ref: '${{ github.event.pull_request.base.ref }}'
+          ref: ${{ github.event.pull_request.base.ref }}
           path: 'base'
 
       - name: Setup Infracost
@@ -23,7 +23,7 @@ jobs:
 
       - name: Generate Infracost cost estimate baseline for base branch
         run: |
-        
+          cd base/${{ env.TF_ROOT }}
           infracost breakdown --path=. \
                               --format=json \
                               --out-file=/tmp/infracost-base.json
@@ -35,33 +35,22 @@ jobs:
 
       - name: Generate Infracost diff for PR branch
         run: |
-          #cd pr/${TF_ROOT}
+          cd pr/${{ env.TF_ROOT }}
           infracost diff --path=. \
                           --format=json \
                           --compare-to=/tmp/infracost-base.json \
                           --out-file=/tmp/infracost-diff.json
 
-      # This is the new step that replaces the previous "Post Infracost comment" step
       - name: Post detailed Infracost comment
         run: |
-          # Parse the Infracost JSON output for detailed cost information
           jq '.projects[] | {projectName: .name, pastCost: .pastTotalMonthlyCost, newCost: .totalMonthlyCost, diff: .diffTotalMonthlyCost}' /tmp/infracost-diff.json > /tmp/parsed_costs.json
-        
-          # Format the parsed JSON into a markdown comment
+          
           echo "### Cost Analysis" > comment.md
           echo "| Project | Previous Cost | New Cost | Cost Difference |" >> comment.md
           echo "|---------|--------------|----------|-----------------|" >> comment.md
-
-          
-
-         
           jq -r '.[] | "\(.projectName) | \(.pastCost) | \(.newCost) | \(.diffTotalMonthlyCost // "N/A") |"' /tmp/parsed_costs.json >> comment.md
-
-
-
-
-
-          # Post the comment to GitHub
+          
           gh pr comment ${{ github.event.pull_request.number }} --body-file comment.md
         env:
           GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+
