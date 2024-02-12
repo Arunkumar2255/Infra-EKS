@@ -51,7 +51,8 @@ jobs:
           echo "### Cost Analysis" > comment.md
           echo "| Project | Previous Cost | New Cost | Cost Difference |" >> comment.md
           echo "|---------|--------------|----------|-----------------|" >> comment.md
-          jq -r '.[] | "\(.projectName) | \$\(.pastCost) | \$\(.newCost) | \(.diff)"' /tmp/parsed_costs.json >> comment.md
+          jq -r '.[] | "\(.projectName) | $\(.pastCost) | $\(.newCost) | \(.diff)"' /tmp/parsed_costs.json >> comment.md
+
 
           # Post the comment to GitHub
           gh pr comment ${{ github.event.pull_request.number }} --body-file comment.md
