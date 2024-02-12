@@ -46,9 +46,6 @@ jobs:
         run: |
           # Parse the Infracost JSON output for detailed cost information
           jq '.projects[] | {projectName: .name, pastCost: .pastTotalMonthlyCost, newCost: .totalMonthlyCost, diff: .diffTotalMonthlyCost}' /tmp/infracost-diff.json > /tmp/parsed_costs.json
-
-           - name: Print parsed_costs.json content
-             run: cat /tmp/parsed_costs.json
         
           # Format the parsed JSON into a markdown comment
           echo "### Cost Analysis" > comment.md
