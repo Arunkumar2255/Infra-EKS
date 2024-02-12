@@ -55,8 +55,7 @@ jobs:
           
 
          
-          jq -r '.[] | "\(.projectName) | \(.pastCost) | \(.newCost)"' /tmp/parsed_costs.json >> comment.md
-          jq '.[].diffTotalMonthlyCost' /tmp/parsed_costs.json
+          jq -r '.[] | [.projectName,.pastCost,.newCost,.diffTotalMonthlyCost]' "$/tmp/parsed_costs.json >> comment.md
 
 
 
